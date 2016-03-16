@@ -62,7 +62,7 @@ Generates the page to enter the username and pwd ,passes them as a json payload 
 I have added two records for the purpose of testing.
 
 Welcome Page
-http://localhost:8081/MyJavaChallenge/welcome 
+http://localhost:8081/MyJavaChallenge/welcome
 Has the links for the other endpoints.
 Can access any of the endpoints from this page.
 
