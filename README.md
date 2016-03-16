@@ -5,9 +5,9 @@ This is a Java project for the following requirements: 1) Build a small app that
 Build an endpoint that authenticates a user based on a login/password passed in a JSON payload and verifies against a simple data structure (Mongo, MySQL, etc.).
 Build an endpoint that returns all users in the database filtered by a URL parameter (can be city, profession, etc) and groups them by another parameter (also your choice).
 Build an endpoint that checks and returns the status of all components that it depends on (e.g. Is Mongo still up OK, etc.).
-Build an endpoint that when called returns the list of files in a given directory. 2) Deliverables
-Commit to GitHub (if you don't have a GitHub account...no problem as they are free to create)
-Source code + deployment instructions 3) Things to consider for your "readme" doc.
+Build an endpoint that when called returns the list of files in a given directory.
+Source code + deployment instructions 3).
+
 Use the technologies of your choice but please add a small paragraph on why you choose that technology.
 The endpoints have to be able to handle versioning, please explain the strategy on how to accomplish this.
 If you have time please add pagination, if not please describe how the solution would support pagination
@@ -34,8 +34,11 @@ insert into my_user values('John','Bob',113,'engineer','Fare Fax','VA','USA',nul
 insert into my_user values('berry','Vang',118,'doctor','NashVille','NC','USA',null,null); insert into my_user values('Cherry','Araku',114,'teacher','Knr','AP','India',null,null); insert into my_user values('Aravi','Gad',115,'lawyer','Wgl','AP','India',null,null);
 
 Make Sure to import the library files in the web-inf/lib folder and set the classpath properly.
+I have a WAR file that can be imported directly into Eclipse, that takes care of all the lib jars.
+
 Endpoints: http://localhost:8081/MyJavaChallenge/ 
 Generates the page to enter the username and pwd ,passes them as a json payload and verifies it from the database and generates a json payload string. I have added two records for the purpose of testing.
+useremail: manu@gmail.com, password: manu
 
 Welcome Page http://localhost:8081/MyJavaChallenge/welcome
 Has the links for the other endpoints. Can access any of the endpoints from this page.
