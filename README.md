@@ -54,7 +54,6 @@ insert into my_user values('Cherry','Araku',114,'teacher','Knr','AP','India',nul
 insert into my_user values('Aravi','Gad',115,'lawyer','Wgl','AP','India',null,null);
 
 Make Sure to import the library files in the web-inf/lib folder and set the classpath properly.
-I have included a .WAR file for the project that helps you to import the project directly into Eclipse and takes care of the library jars also.
 
 Endpoints:
 http://localhost:8081/MyJavaChallenge/
