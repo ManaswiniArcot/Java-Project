@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+   http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+   
+  <!--this is main tag for the annotation based classes  -->
+   <context:component-scan base-package="com.samplejs" />
+
+   <tx:annotation-driven/>
+   
+  <!--this is not required if the controller is defined using @ annotations if not below two lines are must.
+  
+   <bean id="HandlerMapping" class = "org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+ 
+   <bean name = "/welcome.jsp" class ="com.samplejs/AppController"/>
+   --> 
+  <!-- this tells the MVC application to consider this interceptor for all requests
+  to make this work only for few paths we nees ro add another property as
+  <mvc:mapping path = "" />
+   
+   --><!-- 
+   <mvc:interceptors>
+   <bean class = "com.samplejs.MyInterceptor">	</bean>
+   </mvc:interceptors> -->
+   
+   <bean id = "viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/jsp/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
+<bean id = "messageSource" class = "org.springframework.context.support.ReloadableResourceBundleMessageSource" >
+	<property name = "basename" value = "/WEB-INF/errorMessages"></property>
+	<!-- This line commits all the changes to the properties file for evary 1 sec.This line is not
+	recommended in the Production sites.Only in case of development,and nly if its requires to overcome restarting the server
+	again. 
+	<property name = "cacheSeconds" value = "1"></property>
+ -->
+ </bean>
+
+<!--These lines are to be included to handle the exceptions without requiring to write java classes using @ExceptHandler annotations for the 
+methods the exceptions and  another @ControllerAdvice annotation for the class.
+This requires JSP files to be generated with the required message to let the users understand with the name corresponding to the 
+property key names.
+-->
+ <bean id = "simpleMappingExceptionResolver" class = "org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+<property name = "exceptionMappings">
+<map> <entry key = "NullPointerException" value = "NullPointerException"></entry>
+<entry key = "IOException" value = "IOException"></entry></map></property>
+<property name = "defaultErrorView" value = "Exception"></property>
+<property name = "warnLogCategory" value = "MVCLogger"></property></bean>
+
+<bean id="dataSource"
+            class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+            <property name="url" value="jdbc:mysql://localhost:3306/mytest" />
+            <property name="username" value="marcot" />
+            <property name="password" value="manu" />
+            </bean>
+<bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="sessionFactory">  
+ <property name="dataSource" ref="dataSource"></property>  
+ <property name="annotatedClasses">  
+  <list>  
+   <value>com.samplejs.Users</value>  
+    </list>  
+ </property>  
+ <property name="hibernateProperties">  
+ <props>  
+  <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>  
+  <prop key="hibernate.show_sql">true</prop>    
+ </props>  
+  </property>  
+</bean> 
+
+ <bean class="org.springframework.orm.hibernate3.HibernateTransactionManager" id="transactionManager">  
+ <property name="sessionFactory" ref="sessionFactory"></property>  
+ </bean> 
+<!-- 
+<bean id = "userDao" class = "com.DAO.UserDaoImpl">
+ <property name="sessionFactory" ref="sessionFactory" />
+ </bean>  -->
+ </beans>
+ 
