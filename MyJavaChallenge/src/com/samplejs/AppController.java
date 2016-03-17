@@ -91,7 +91,6 @@ public class AppController {
 
 	/*This method is called when the request pattern matches the value 'status' and this is called when 
 	the user clicks to check the status.
-	
 		*/
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
 	public ModelAndView checkStatus(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException {
@@ -121,17 +120,25 @@ public class AppController {
 		return serverModel;
 	}
 
+/*This is initial method called and returns the ModelandView Object of the Login Page.
+As soon as the request is placed the view that is sent to the end user is generated from this model.
+*/
 	@RequestMapping("/")
 	public ModelAndView indexpage() {
 		return new ModelAndView("loginPage");
 	}
 
+/*Returns the ModelAndView Object for the Search Page.When user clicks on the link Search User.
+*/
 	@RequestMapping(value = "/searchUser", method = RequestMethod.GET)
 	public ModelAndView search() {
 		ModelAndView searchModel = new ModelAndView("searchPage");
 		return searchModel;
 	}
 
+/*Returns the ModelAndView object after running the sql query for the criteria that user enters.
+returns a list if there are records.Otherwise returns a message.
+*/
 	@RequestMapping(value = "/searchBy", method = RequestMethod.POST)
 	public ModelAndView searchUserBy(@RequestParam("statetype") String type,
 			@RequestParam("countrytype") String country, @RequestParam("Proftype") String Prof) {
@@ -141,6 +148,10 @@ public class AppController {
 		return searchResultModel;
 	}
 
+/*This method returns the json String object for the login details entered by the user.
+this takes the json msg from the jsp page by the HttpServletRequest and uses JsonArray to retrieve the values of user email and password
+and verifies it with the database records.
+*/
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
 	public void post(HttpServletRequest request, HttpServletResponse response)
 			throws JsonGenerationException, JsonMappingException, IOException {
