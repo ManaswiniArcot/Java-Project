@@ -48,7 +48,8 @@ public class AppController {
 
 	@Autowired
 	private UserService userService;
-
+	/*This method is called the request matches the pattern the value in the Request mapping.
+	This page is loaded after the Login Page*/	
 	@RequestMapping("/welcome")
 	public ModelAndView mymodel() throws Exception {
 		ModelAndView myModel = new ModelAndView("myfirstang");
@@ -62,11 +63,16 @@ public class AppController {
 	 *
 	 */ @ModelAttribute
 	public void addCommonObj(Model model1) {
-		model1.addAttribute("headerMsg", "This is my new ModelAttribute");
+		model1.addAttribute("headerMsg", "This is a Java Challenge");
 	}
 
+	/*This method is called when user enters a directory path and clicks on GO button
+	@RequestParam gets the parameter from the request,that is the value entered by the user.
+	and is directly mapped to a String variable.
+	This method checks if the path is empty or not.If empty notifies the user.
+	*/
 	@RequestMapping(value = "/files", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam("path") String path) {
+	public ModelAndView getFiles(@RequestParam("path") String path) {
 
 		ModelAndView fileModel = new ModelAndView("filelist");
 		fileModel.addObject("path", path);
@@ -83,6 +89,10 @@ public class AppController {
 		return fileModel;
 	}
 
+	/*This method is called when the request pattern matches the value 'status' and this is called when 
+	the user clicks to check the status.
+	
+		*/
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
 	public ModelAndView checkStatus(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException {
 		ModelAndView serverModel = new ModelAndView("server");
