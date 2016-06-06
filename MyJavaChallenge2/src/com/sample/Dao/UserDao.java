@@ -12,7 +12,8 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+/*The Interface which includes the method declarations.
+*/
 public interface UserDao {  
 	public List<Users> listAllUsers(String type,String Country,String Prof);
 	    

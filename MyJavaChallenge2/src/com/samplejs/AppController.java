@@ -50,7 +50,8 @@ public class AppController {
 
 	@Autowired
 	private UserService userService;
-
+	/*This method is called the request matches the pattern the value in the Request mapping.
+	This page is loaded after the Login Page*/	
 	@RequestMapping("/welcome")
 	public ModelAndView mymodel() throws Exception {
 		ModelAndView myModel = new ModelAndView("myfirstang");
@@ -64,11 +65,16 @@ public class AppController {
 	 *
 	 */ @ModelAttribute
 	public void addCommonObj(Model model1) {
-		model1.addAttribute("headerMsg", "This is my new ModelAttribute");
+		model1.addAttribute("headerMsg", "This is a Java Challenge");
 	}
 
+	/*This method is called when user enters a directory path and clicks on GO button
+	@RequestParam gets the parameter from the request,that is the value entered by the user.
+	and is directly mapped to a String variable.
+	This method checks if the path is empty or not.If empty notifies the user.
+	*/
 	@RequestMapping(value = "/files", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam("path") String path) {
+	public ModelAndView getFiles(@RequestParam("path") String path) {
 
 		ModelAndView fileModel = new ModelAndView("filelist");
 		fileModel.addObject("path", path);
@@ -85,6 +91,9 @@ public class AppController {
 		return fileModel;
 	}
 
+	/*This method is called when the request pattern matches the value 'status' and this is called when 
+	the user clicks to check the status.
+		*/
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
 	public ModelAndView checkStatus(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException {
 		ModelAndView serverModel = new ModelAndView("server");
@@ -113,17 +122,25 @@ public class AppController {
 		return serverModel;
 	}
 
+/*This is initial method called and returns the ModelandView Object of the Login Page.
+As soon as the request is placed the view that is sent to the end user is generated from this model.
+*/
 	@RequestMapping("/")
 	public ModelAndView indexpage() {
 		return new ModelAndView("loginPage");
 	}
 
+/*Returns the ModelAndView Object for the Search Page.When user clicks on the link Search User.
+*/
 	@RequestMapping(value = "/searchUser", method = RequestMethod.GET)
 	public ModelAndView search() {
 		ModelAndView searchModel = new ModelAndView("searchPage");
 		return searchModel;
 	}
 
+/*Returns the ModelAndView object after running the sql query for the criteria that user enters.
+returns a list if there are records.Otherwise returns a message.
+*/
 	@RequestMapping(value = "/searchBy", method = RequestMethod.POST)
 	public ModelAndView searchUserBy(@RequestParam("statetype") String type,
 			@RequestParam("countrytype") String country, @RequestParam("Proftype") String Prof) {
@@ -133,6 +150,10 @@ public class AppController {
 		return searchResultModel;
 	}
 
+/*This method returns the json String object for the login details entered by the user.
+this takes the json msg from the jsp page by the HttpServletRequest and uses JsonArray to retrieve the values of user email and password
+and verifies it with the database records.
+*/
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
 	public void post(HttpServletRequest request, HttpServletResponse response)
 			throws JsonGenerationException, JsonMappingException, IOException {
