@@ -1,16 +1,12 @@
 # Java-Project
 Java-Project
-This is a Java project for the following requirements: 1) Build a small app that consists of 4 endpoints.
+This is a Java project for the following requirements: A small application that consists of 4 endpoints.
+An endpoint that authenticates a user based on a login/password passed in a JSON payload and verifies against a simple data structure ( MySQL).
+An endpoint that returns all users in the database filtered by a URL parameter (can be city, profession, etc) and groups them by another parameter (also your choice).
+An endpoint that checks and returns the status of all components that it depends on (e.g. Is MySQL still up OK, etc.).
+An endpoint that when called returns the list of files in a given directory.
 
-Build an endpoint that authenticates a user based on a login/password passed in a JSON payload and verifies against a simple data structure (Mongo, MySQL, etc.).
-Build an endpoint that returns all users in the database filtered by a URL parameter (can be city, profession, etc) and groups them by another parameter (also your choice).
-Build an endpoint that checks and returns the status of all components that it depends on (e.g. Is Mongo still up OK, etc.).
-Build an endpoint that when called returns the list of files in a given directory.
-Source code + deployment instructions 3).
 
-Use the technologies of your choice but please add a small paragraph on why you choose that technology.
-The endpoints have to be able to handle versioning, please explain the strategy on how to accomplish this.
-If you have time please add pagination, if not please describe how the solution would support pagination
 I have choosen Java Technology to work on this Challenge and Spring MVC frame work implement this.The idea behind using this framework is that, its light weight, separates the Business logic,Input Logic and the UI logic . once we define the Dispatcher-servlet/Controller class which takes care of all the requests from the client. And a separate View Resolver that generates views based on the Model Object sent from the Controller Class. Dispatcher servlet helps the in finding the appropriate class/method to execute the process.Any change in the business requirement, needs change in buisness logic classes only.
 
 Hibernate enables us to write code efficiently,using the annotations.Can get rid of XML code mappings that are otherwise required. Connected to the MySQL using JDBC driver and Used ApacheTomcat 8.0 Sever.
