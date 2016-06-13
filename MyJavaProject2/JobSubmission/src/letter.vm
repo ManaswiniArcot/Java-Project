@@ -1,0 +1,20 @@
+<html>
+<body>
+<h4>Your Name</h4>
+contact | email Address
+<br>
+${currentDate}<br>
+<p>
+Dear ${hrName}:</p>
+<p>I am interested to work for the ${positionName} position at ${companyName}. I found this post in the career section of the company site.(${sourceUrl})
+<br>I am graduate in Computer science,some stuff that includes your strengths and experiences.  
+
+<br>I am looking for an opportunity to work with a challenging team to learn more, and contribute my best. 
+
+<br>I look forward to discussing with you more about my experiences and technical skills in detail. Thank you.
+<br>
+<br>
+Sincerely,<br>
+Blah Blah </p>
+</body>
+</html>

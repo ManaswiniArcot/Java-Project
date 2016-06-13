@@ -1,0 +1,26 @@
+input.field {
+	margin-left: 50px;
+}
+
+#A {
+	height: 180px;
+	width: 130px;
+	float: left;
+	margin: 5px, 5px, 0px, 5px;
+	padding: 2px, 2px, 2px ,.2px;
+}
+
+#B {
+	padding-left: 2px;
+	height: 150px;
+	margin-left: 70px;
+}
+
+input.field {
+	/*  border: 1px solid navy;*/
+	width: auto;
+}
+
+.req {
+	color: red;
+}
